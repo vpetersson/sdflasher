@@ -9,7 +9,7 @@ For instance, to flash out the image `2016-02-26-raspbian-jessie-lite.zip`, simp
 
 
 ```
-./sdflasher.sh 2016-02-26-raspbian-jessie-lite.zip
+$ ./sdflasher.sh 2016-02-26-raspbian-jessie-lite.zip
 Printing mounted disks:
 
 /dev/disk1 on / (hfs, local, journaled)
