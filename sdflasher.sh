@@ -45,11 +45,11 @@ if [[ "$CONFIRM" == "Y" ]]; then
   echo "Flashing out $LATEST_VERSION to $RDISK"
   set -x
   if [[ "$LATEST_VERSION" == *zip  ]]; then
-    unzip -p "$RELEASEPATH/$LATEST_VERSION" | dd bs=1m of=$RDISK
+    unzip -p "$RELEASEPATH/$LATEST_VERSION" | dd bs=32M of=$RDISK
   elif [[ "$LATEST_VERSION" == *gz  ]]; then
-    gzip -d -c "$RELEASEPATH/$LATEST_VERSION" | dd bs=1m of=$RDISK
+    gzip -d -c "$RELEASEPATH/$LATEST_VERSION" | dd bs=32M of=$RDISK
   elif [[ "$LATEST_VERSION" == *img  ]]; then
-    dd if="$RELEASEPATH/$LATEST_VERSION" bs=1m of=$RDISK
+    dd if="$RELEASEPATH/$LATEST_VERSION" bs=32M of=$RDISK
   fi
 
   diskutil eject $SD_DISK
