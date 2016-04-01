@@ -1,5 +1,5 @@
 # sdflasher
-A simple script that simplifies flashing of SD cards from disk images.
+A simple script that simplifies flashing of SD cards from disk images on MacOS.
 
 ## Usage
 
