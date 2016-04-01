@@ -32,6 +32,5 @@ Flashing out 2016-02-26-raspbian-jessie-lite.zip to /dev/rdisk2
 1361051648 bytes transferred in 125.996167 secs (10802326 bytes/sec)
 + diskutil eject /dev/disk2s1
 Disk /dev/disk2s1 ejected
-+ echo Done.
 Done.
 ```

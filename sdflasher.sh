@@ -53,6 +53,8 @@ if [[ "$CONFIRM" == "Y" ]]; then
   fi
 
   diskutil eject $SD_DISK
+
+  set +x
   echo "Done."
 
 else
