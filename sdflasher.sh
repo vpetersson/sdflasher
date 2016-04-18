@@ -1,14 +1,10 @@
 #!/bin/bash
 set -e
 
-RELEASEPATH="$HOME/Downloads/"
-
 SD_DISK=$(mount | grep msdos | awk {'print $1'})
-DISK_NO=$(echo $SD_DISK | awk '{print substr($0,length-2,1)}')
+DISK_NO=$(echo $SD_DISK | awk '{print substr($0,length($0),1)}')
 RDISK_BASE="/dev/rdisk"
 RDISK=$RDISK_BASE$DISK_NO
-
-clear
 
 # Make sure we're root
 if [ "$(whoami)" != 'root' ]; then
@@ -18,6 +14,13 @@ fi
 
 if [ -z "$1" ]; then
   echo "No parameter passed. Exiting."
+  echo -e "Usage:\nsdflasher.sh image.img or sdflasher.sh image.img /path/to/image"
+fi
+
+if [ -z "$2" ]; then
+  RELEASEPATH="$HOME/Downloads/"
+else
+  RELEASEPATH="$2"
 fi
 
 # Validate all strings
@@ -35,14 +38,15 @@ echo -e "\n\nIs $SD_DISK ($RDISK) your SD card? (Y/N)"
 read CONFIRM
 
 if [[ "$CONFIRM" == "Y" ]]; then
-
-  echo "Unmounting $SD_DISK ..."
-  diskutil unmount $SD_DISK
-
   cd "$RELEASEPATH"
   LATEST_VERSION="$(ls -t *$1* | head -n 1)"
 
   echo "Flashing out $LATEST_VERSION to $RDISK"
+  read -p "Press any key to continue."
+
+  echo "Unmounting $SD_DISK ..."
+  diskutil unmount $SD_DISK
+
   set -x
   if [[ "$LATEST_VERSION" == *zip  ]]; then
     unzip -p "$RELEASEPATH/$LATEST_VERSION" | dd bs=1m of=$RDISK
