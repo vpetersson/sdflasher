@@ -2,7 +2,7 @@
 set -e
 
 SD_DISK=$(mount | grep msdos | awk {'print $1'})
-DISK_NO=$(echo $SD_DISK | awk '{print substr($0,length($0),1)}')
+DISK_NO=$(echo $SD_DISK | awk '{print substr($0,length-2,1)}')
 RDISK_BASE="/dev/rdisk"
 RDISK=$RDISK_BASE$DISK_NO
 
