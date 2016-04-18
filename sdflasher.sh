@@ -39,7 +39,7 @@ read CONFIRM
 
 if [[ "$CONFIRM" == "Y" ]]; then
   cd "$RELEASEPATH"
-  LATEST_VERSION="$(ls -t *$1* | head -n 1)"
+  LATEST_VERSION="$(ls -t *$1* | grep -v md5 | head -n 1)"
 
   echo "Flashing out $LATEST_VERSION to $RDISK"
   read -p "Press any key to continue."
